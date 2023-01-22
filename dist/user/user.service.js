@@ -92,8 +92,53 @@ let UserService = class UserService {
                 });
         }
     }
-    async getUserById(id) {
-        return this.userRepository.findBy({ id: id });
+    async getAll(res) {
+        const data = await this.userRepository.find();
+        if (data.length == 0) {
+            res.status(400).send({
+                success: false,
+                msg: "회원가입된 유저가 존재하지 않습니다."
+            });
+        }
+        else {
+            res.status(200).send({
+                success: true,
+                msg: "현재 회원가입된 유저입니다.",
+                data
+            });
+        }
+    }
+    async getUserById(id, res) {
+        const isUser = await this.userRepository.findOneBy({ id });
+        if (!isUser) {
+            res.status(400).send({
+                success: false,
+                msg: `아이디가 ${id} 인 유저를 찾을 수 없습니다.`
+            });
+        }
+        else {
+            res.status(200).send({
+                success: true,
+                msg: "성공적으로 조회하였습니다.",
+                isUser
+            });
+        }
+    }
+    async deleteUserById(id, res) {
+        const isUser = await this.userRepository.findBy({ id });
+        if (isUser.length == 0) {
+            res.status(400).send({
+                success: false,
+                msg: `아이디가 ${id}인 유저를 찾을 수 없습니다.`
+            });
+        }
+        else {
+            await this.userRepository.delete({ id });
+            res.status(200).send({
+                success: true,
+                msg: "성공적으로 해당하는 유저를 삭제했습니다."
+            });
+        }
     }
 };
 UserService = __decorate([

@@ -25,8 +25,14 @@ let UserController = class UserController {
     login(req, res) {
         return this.userService.getSignIn(res, req);
     }
-    getUserById(id) {
-        return this.userService.getUserById(id);
+    getAll(res) {
+        return this.userService.getAll(res);
+    }
+    getUserById(id, res) {
+        return this.userService.getUserById(id, res);
+    }
+    deleteUserById(id, res) {
+        return this.userService.deleteUserById(id, res);
     }
 };
 __decorate([
@@ -46,12 +52,28 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "login", null);
 __decorate([
+    (0, common_1.Get)(""),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "getAll", null);
+__decorate([
     (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "getUserById", null);
+__decorate([
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "deleteUserById", null);
 UserController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

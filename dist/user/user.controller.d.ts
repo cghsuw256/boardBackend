@@ -5,5 +5,7 @@ export declare class UserController {
     constructor(userService: UserService);
     userReg(req: Request, res: Response): Promise<void>;
     login(req: Request, res: Response): Promise<Response<any, Record<string, any>>>;
-    getUserById(id: number): Promise<import("../entity/user.entity").User[]>;
+    getAll(res: Response): Promise<void>;
+    getUserById(id: number, res: Response): Promise<void>;
+    deleteUserById(id: number, res: Response): Promise<void>;
 }

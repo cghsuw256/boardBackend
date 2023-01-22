@@ -7,5 +7,7 @@ export declare class UserService {
     userReg(req: Request, res: Response): Promise<void>;
     findOne(account: string): Promise<User>;
     getSignIn(res: Response, req: Request): Promise<Response<any, Record<string, any>>>;
-    getUserById(id: number): Promise<User[]>;
+    getAll(res: Response): Promise<void>;
+    getUserById(id: number, res: Response): Promise<void>;
+    deleteUserById(id: number, res: Response): Promise<void>;
 }

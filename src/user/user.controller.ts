@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Param, Post, Req, Res } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Post, Req, Res } from "@nestjs/common";
 import { UserService } from './user.service';
 import { Request, Response } from "express";
 
@@ -17,8 +17,18 @@ export class UserController {
     return this.userService.getSignIn(res, req);
   }
 
+  @Get("")
+  getAll(@Res() res: Response) {
+    return this.userService.getAll(res);
+  }
+
   @Get(":id")
-  getUserById(@Param("id") id:number){
-    return this.userService.getUserById(id);
+  getUserById(@Param("id") id:number, @Res() res: Response){
+    return this.userService.getUserById(id, res);
+  }
+
+  @Delete(":id")
+  deleteUserById(@Param("id") id:number, @Res() res: Response) {
+    return this.userService.deleteUserById(id, res);
   }
 }
