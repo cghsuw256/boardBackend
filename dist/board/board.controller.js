@@ -22,6 +22,12 @@ let BoardController = class BoardController {
     createBoard(req, res) {
         return this.boardService.createBoard(req, res);
     }
+    deleteBoardById(id, res) {
+        return this.boardService.deleteBoardById(id, res);
+    }
+    updateBoardById(id, req, res) {
+        return this.boardService.updateBoardById(id, req, res);
+    }
     getAll() {
         return this.boardService.getAll();
     }
@@ -34,6 +40,23 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], BoardController.prototype, "createBoard", null);
+__decorate([
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", void 0)
+], BoardController.prototype, "deleteBoardById", null);
+__decorate([
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object, Object]),
+    __metadata("design:returntype", void 0)
+], BoardController.prototype, "updateBoardById", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

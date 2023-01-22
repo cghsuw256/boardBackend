@@ -26,7 +26,7 @@ AppModule = __decorate([
                 password: '6482',
                 database: 'board',
                 entities: [board_entity_1.Board, user_entity_1.User],
-                synchronize: false,
+                synchronize: true,
                 autoLoadEntities: true,
             }),
             user_module_1.UserModule,

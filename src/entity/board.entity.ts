@@ -26,7 +26,7 @@ export class Board {
   @Column("datetime", {name: "createdAt", default: () => "CURRENT_TIMESTAMP"})
   createdAt: Date;
 
-  @Column("datetime", {name: "updatedAt", default: null})
+  @Column("datetime", {name: "updatedAt", default: () => "CURRENT_TIMESTAMP"})
   updatedAt: Date;
 
   @ManyToOne(() => User, (user) => user.Board, {

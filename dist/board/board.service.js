@@ -38,12 +38,42 @@ let BoardService = class BoardService {
         });
         res.status(201).send({
             success: true,
-            msg: "성공적으로 유저를 추가했습니다.",
+            msg: "성공적으로 게시물을 추가했습니다.",
             resData
         });
     }
     async getAll() {
         return this.boardRepository.find();
+    }
+    async deleteBoardById(id, res) {
+        const isBoard = await this.boardRepository.findBy({ id });
+        if (isBoard.length == 0) {
+            res.status(400).send({
+                success: false,
+                msg: `아이디가 ${id}인 게시물을 찾을 수 없습니다.`
+            });
+        }
+        else {
+            await this.boardRepository.delete({ id });
+            res.status(200).send({
+                success: true,
+                msg: `성공적으로 아이디가 ${id}인 게시물을 삭제하였습니다. `
+            });
+        }
+    }
+    async updateBoardById(id, req, res) {
+        const isBoard = await this.boardRepository.findBy({ id });
+        const { title, content } = req.body;
+        const date = new Date();
+        if (isBoard.length == 0) {
+            res.status(400).send({
+                success: false,
+                msg: `아이디가 ${id}인 게시물을 찾을 수 없습니다.`
+            });
+        }
+        else {
+            await this.boardRepository.update(title, content);
+        }
     }
 };
 BoardService = __decorate([

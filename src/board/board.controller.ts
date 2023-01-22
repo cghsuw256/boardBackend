@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Req, Res } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Post, Put, Req, Res } from "@nestjs/common";
 import { BoardService } from "./board.service";
 import { Request, Response } from 'express';
 
@@ -10,6 +10,21 @@ export class BoardController {
   @Post('reg')
   createBoard(@Req() req: Request, @Res() res: Response) {
     return this.boardService.createBoard(req, res);
+  }
+
+  // @Post("date")
+  // getBoardByDate(@Req() req: Request, @Res() res: Response) {
+  //   return this.boardService.getBoardByDate(req, res);
+  // }
+
+  @Delete(":id")
+  deleteBoardById(@Param("id") id: number, @Res() res: Response) {
+    return this.boardService.deleteBoardById(id, res);
+  }
+
+  @Put(":id")
+  updateBoardById(@Param("id") id: number, @Req() req: Request, @Res() res: Response) {
+    return this.boardService.updateBoardById(id, req, res);
   }
 
   @Get()

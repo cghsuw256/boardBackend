@@ -43,7 +43,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Board.prototype, "createdAt", void 0);
 __decorate([
-    (0, typeorm_1.Column)("datetime", { name: "updatedAt", default: null }),
+    (0, typeorm_1.Column)("datetime", { name: "updatedAt", default: () => "CURRENT_TIMESTAMP" }),
     __metadata("design:type", Date)
 ], Board.prototype, "updatedAt", void 0);
 __decorate([
